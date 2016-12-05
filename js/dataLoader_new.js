@@ -15,11 +15,11 @@ var areaSelection = false;
 window.location.href='#';
 
 queue()
-    .defer(d3.csv, "./Final_Data_With_Categories_112616.csv")
-    .defer(d3.csv, './Category_Daily_checkin.csv')//daily_star_city.csv')//
-    .defer(d3.csv, './businesses_per_city.csv')
-    .defer(d3.csv, './categories_per_city.csv')
-    .defer(d3.csv, './Business_star_data.csv')
+    .defer(d3.csv, "Final_Data_With_Categories_112616.csv")
+    .defer(d3.csv, 'Category_Daily_checkin.csv')//daily_star_city.csv')//
+    .defer(d3.csv, 'businesses_per_city.csv')
+    .defer(d3.csv, 'categories_per_city.csv')
+    .defer(d3.csv, 'Business_star_data.csv')
     //wait for a variable to be returned for each file loaded: blocks from blk_group file, neighborhoods from bos_neighborhoods, and income from the parsed acs.csv.
     .await(function (err, dataIn, checkinDataIn, businessesIn, categoriesIn,businessStars) {
 

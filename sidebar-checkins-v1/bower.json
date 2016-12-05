@@ -1,0 +1,24 @@
+{
+  "name": "vizdom",
+  "description": "viz class",
+  "main": "index.html",
+  "authors": [
+    "Start Bootstrap"
+  ],
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE"
+  },
+  "homepage": "https://github.com/saritajoshi9389/CS7280-FinalProject",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "leaflet-locationfilter": "*"
+  }
+}

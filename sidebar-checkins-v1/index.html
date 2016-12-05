@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta charset="UTF-8">-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--<meta name="viewport" content="initial-scale=1.25, user-scalable = no">-->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--// For mapbox-->
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <title>theme</title>
+
+
+
+    <!-- Theme JavaScript -->
+    <!--<script src="js/freelancer.min.js"></script>-->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="src/locationfilter.css" />
+
+    <!--// Added for leaflet-->
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet-sidebar.css" />
+    <link rel="stylesheet" href="css/custom-style.css" />
+    <link rel="stylesheet" href="css/leaflet-search.css" />
+
+    <!-- JS libraries-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="./lib/d3.v4.2.6.min.js"></script>
+    <script src="./lib/d3-tip.js"></script>
+    <script src="./lib/crossfilter.js"></script>
+    <script src="./lib/queue.min.js"></script>
+
+    <!-- custom JS -->
+    <!--<script src="js/dataLoader.js"></script>-->
+    <script src="js/leaflet-sidebar.js"></script>
+
+    <script type="text/javascript" src="js/leaflet_data_render.js"></script>
+    <script type="text/javascript" src="js/small-pane-left.js"></script>
+    <script type="text/javascript" src="js/small-pane-right.js"></script>
+    <script type="text/javascript" src="js/dual_view_wrapper.js"></script>
+    <script type="text/javascript" src="js/view-visibility-ctrl.js"></script>
+    <script src="js/L.Polyline.SnakeAnim.js"></script>
+
+    <script src="js/dataLoader_new.js"></script>
+
+    <script src="js/leaflet-search.js"></script>
+    <script src="js/sidebar1.js"></script>
+    <script src="js/select-categories.js"></script>
+    <!--<script src="js/leaflet-areaselect.js"></script>-->
+    <!--<script src="js/location-filter.js"></script>-->
+    <!--<script src="js/locationfilter.js"></script>-->
+    <!--<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />-->
+    <script src="src/locationfilter.js"></script>
+
+
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>-->
+    <!--<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>-->
+
+    <!--Tester for draggable circle-->
+    <!--<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>-->
+    <!--<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>-->
+    <!--<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>-->
+    <!--<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />-->
+    <script src="js/papaparse.js"></script>
+    <script src="js/papaparse.min.js"></script>
+    <script src="js/compare_render.js"></script>
+
+
+
+</head>
+
+<body id="page-top" class="index">
+
+
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                    <!--<span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>-->
+
+                <!--</button>-->
+                <a class="navbar-brand" href="#page-top" style="align-content: center">YELP DATA ANALYSIS </a>
+<!-- Start Floating Layer -->
+                <div id="FullView" style="visibility:hidden; font-size: 14px;font-style: italic; font-family: Arial;text-transform: none;@media and screen { min-width: 300px;
+
+                }">
+                    <div id="FloatingLayer" style="position:absolute;width:850px;left:100px;top:200px;visibility:visible;">
+
+
+                        <!-- Overlay from http://www.w3schools.com/howto/howto_js_fullscreen_overlay.asp-->
+                        <div id="myNav" class="overlay">
+
+                            <!-- Button to close the overlay navigation -->
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+
+
+                                <span id="intro-text">
+                                    <h2>VizDOM!! Let's Navigate</h2>
+                                    <br>
+                                    Welcome to the overview page! Here, you can see major yelping cities. Click a city marker
+                                    for more detail. Select business categories, specific map areas, or compare cities side by side.
+                                    Click on "trends" to see the hustle and bustle for all 10 cities. Click "Select Categories"
+                                    to get related stats for one of the categories below!
+
+                                    <br>
+
+                                    <div>
+                                         <br>
+                                        &nbsp;
+                                        <img src="./images/allpins.png" width="90%">&nbsp;
+                                    </div>
+                                </div>
+
+
+
+                        </div>
+
+                        <!-- Use any element to open/show the overlay navigation menu -->
+                        <!--<span onclick="openNav()">open</span>-->
+
+
+                    </div>
+                </div>
+                <!-- End Floating layer -->
+
+                <!--&lt;!&ndash; To Show The Layer &ndash;&gt;-->
+                <!--<a href="javascript:ToggleFloatingLayer('FloatingLayer',1);">Show</a>-->
+                <!--<input type="button" onClick="ToggleFloatingLayer('FloatingLayer',1);" value="Show Layer">-->
+
+                <!--&lt;!&ndash; To Hide The Layer &ndash;&gt;-->
+                <!--<a href="javascript:ToggleFloatingLayer('FloatingLayer',0);">Hide</a>-->
+                <!--<input type="button" onClick="ToggleFloatingLayer('FloatingLayer',0);" value="Hide Layer">-->
+
+            </div>
+            <!--
+            <i class="fa fa-beer" aria-hidden="true"></i>
+            <i class="fa fa-cutlery" aria-hidden="true"></i>
+
+            -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="dropdown">
+                            <button onclick="openCategories()" class="dropbtn btn btn-default" type="button">SELECT CATEGORY</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <!--<a href="#">Link 1</a>-->
+                                <!--<a href="#">Link 2</a>-->
+                                <!--<a href="#">Link 3</a>-->
+                                <table class="mytable">
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Bars" name="optradio"><img src="./images/Bars.png" width="30%"> BARS&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Food" name="optradio"><img src="./images/Food.png" width="30%"> FOOD</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Shopping" name="optradio"><img src="./images/Shopping.png" width="30%"> SHOPPING </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Vehicle" name="optradio"><img src="./images/Vehicle.png" width="30%">VEHICLE</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Home" name="optradio"><img src="./images/Home.png" width="30%"> HOME </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Fashion"  name="optradio"> <img src="./images/Fashion.png" width="30%"> FASHION</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Entertainment" name="optradio"><img src="./images/Entertainment.png" width="30%"> FUN </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Personal Care" name="optradio" ><img src="./images/Personal%20Care.png" width="30%"> CARE</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Stores" name="optradio"><img src="./images/Stores.png" width="30%"> STORES </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Music" name="optradio"><img src="./images/Music.png" width="30%"> MUSIC</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Hotels & Travel" name="optradio"><img src="./images/Hotels%20&%20Travel.png" width="30%"> TRAVEL </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Sports" name="optradio" ><img src="./images/Sports.png" width="30%"> SPORTS</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Pets" name="optradio"><img src="./images/Pets.png" width="30%">PETS </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Events" name="optradio"> <img src="./images/Events.png" width="30%"> EVENTS</label>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr class="myrow">
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Work" name="optradio"><img src="./images/Work.png" width="30%">WORK </label>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="radio">
+                                                <label><input type="radio" onchange="radioCategory(value)" value="Miscellaneous" name="optradio"> <img src="./images/Miscellaneous.png" width="30%"> OTHERS </label>
+                                            </div>
+                                        </th>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </li>
+					<!--<li>-->
+						<!--<div>&nbsp; &nbsp;</div>-->
+					<!--</li>-->
+                    <li class="page-scroll">
+                        <!--<a href="#portfolio">Comparison</a>-->
+						<div class="dropdown">
+                        <button onclick="openComparator()" class="dropbtn btn btn-default" type="button">COMPARE CITIES</button>
+                        </div>
+                        <div id="city_compare" class="dropdown-content">
+                            <!--<a href="#">Link 1</a>-->
+                            <!--<a href="#">Link 2</a>-->
+                            <!--<a href="#">Link 3</a>-->
+                            <table class="city_compare_dropdown" cellpadding="20">
+                                <tr class="city_compare_dropdown_row" >
+                                    <th>
+										<div class="checkbox">
+											<label>
+                                            <input class="compare_checkbox" type="checkbox" value="Edinburgh" >Edinburgh</input></label>
+										</div>	
+                                       
+                                    </th>
+                                    <th>
+										<div class="checkbox">
+                                        <label><input  class="compare_checkbox" type="checkbox" value="Karlsruhe">Karlsruhe</input></label>
+										</div>
+                                    </th>
+                                </tr>
+                                <tr class="city_compare_dropdown_row">
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox" value="Montreal"><i class="" aria-hidden="true"></i> Montreal </label>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox"  value="Waterloo"><i class="" aria-hidden="true"></i> Waterloo </label>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr class="city_compare_dropdown_row">
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox" value="Pittsburgh"><i class="" aria-hidden="true"></i> Pittsburgh </label>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox"  value="Urbana" ><i class="" aria-hidden="true"></i> Urbana </label>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr class="city_compare_dropdown_row">
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox" value="Charlotte"><i class="" aria-hidden="true"></i> Charlotte </label>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox"  value="Phoenix" ><i class="" aria-hidden="true"></i> Phoenix </label>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr class="city_compare_dropdown_row">
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox" value="LasVegas" ><i class="" aria-hidden="true"></i> LasVegas </label>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="checkbox">
+                                            <label><input class="compare_checkbox" type="checkbox" value="Madison"><i class="" aria-hidden="true"></i> Madison </label>
+                                        </div>
+                                    </th>
+                                </tr>
+								<tr class="city_compare_dropdown_row">
+                                    <th>
+                                            <label> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</label>
+                                    </th>
+                                    <th>
+										<button type="button" class="btn btn-primary page-scroll" onclick="compare_cities()">Compare</button>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li class ="mybrush">
+                        <button type="button" class="btn btn-default"  id="tester" style="font-size: 125%">SELECT AREA</button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-default" onclick="location.href='dragit-master/example/nations.html';" value="TRENDS" style="font-size: 125%" >TRENDS</button>
+                    </li>
+                    <li class ="myreset">
+                        <input class="btn btn-primary" type="reset" value="RESET" onclick="callReset()" style="font-size: 125%">
+                    </li>
+                    <!--<li class="page-scroll">
+                        <a href="#about">Analysis</a> class="page-scroll"
+                    </li>-->
+                    <!--<li class ="mytrend">-->
+                        <!--<input class="btn btn-primary" onclick="location.href='dragit-master/example/nations.html';"> TRENDS-->
+                        <!--&lt;!&ndash;<a href="#contact">Trend</a>&ndash;&gt;-->
+                    <!--</li>-->
+                    <!--<li class="category-list">-->
+                        <!--<div class="dropdown">-->
+                            <!--<button onclick="openCategories()" class="dropbtn"><span class="glyphicon glyphicon-th-list"> </span></button>-->
+                            <!--<div id="myDropdown" class="dropdown-content">-->
+                                <!--<a href="#">Link 1</a>-->
+                                <!--<a href="#">Link 2</a>-->
+                                <!--<a href="#">Link 3</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<span class="glyphicon glyphicon-th-list"> </span>&ndash;&gt;-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div id="sidebar" class="col-sm-12 sidebar collapsed">
+            <!-- Nav tabs -->
+            <!-- Icons can be changed using ::
+                http://fontawesome.io/icons/
+            -->
+            <div class="sidebar-tabs">
+                <ul role="tablist">
+                    <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                    <!--<li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>-->
+                    <!--<li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>-->
+                </ul>
+
+                <ul role="tablist">
+                    <!--<li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>-->
+                </ul>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="sidebar-content">
+                <div class="sidebar-pane" id="home">
+                    <h1 class="sidebar-header">
+                        Yelp Stats
+                        <span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+                    </h1>
+                    <h2 id="city-name"> City Name </h2>
+                    <div id="stardiv"></div>
+                    <h5 id="avg-stars"></h5>
+                    <div id="sidebar2"></div></div>
+                    <h6 id="num-checkins"></h6>
+                    <div id="sidebar3"></div>
+                    <div id="sidebar4"></div>
+                    <p id="mycustom2"></p>
+                    <div id="sidebar5"></div>
+                    <h5 id="num-reviews"></h5>
+                    <div id="sidebar1"></div>
+					<!--
+                    <p id ="mycustom">Most users leave just one review; some leave up to 10</p>
+                    -->
+					<br>
+
+					<!--
+                    <p id="mycustom1">Most people rate either high or low; fewer rate in between</p>
+                    -->
+					<br>
+
+                <div class="tooltip">
+
+                    <!--<p> Any Text would do </p>-->
+                    <!--<br/>-->
+                    <!--<button onclick='draw_route()'>DRAW ROUTE</button>-->
+                    <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                    <!--<button onclick='clear_route()'>CLEAR ROUTE</button>-->
+                    <!--<br/><br/><br/>-->
+
+                    <!--<button onclick='goto_dual_view(-->
+								<!--[42.337317, -71.091045],-->
+								<!--[40.716762, -73.980794])'>DUAL VIEW</button>-->
+
+                </div>
+
+
+                <!--<div class="sidebar-pane" id="profile">-->
+                    <!--<h1 class="sidebar-header">-->
+                        <!--&lt;!&ndash;Profile&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>&ndash;&gt;-->
+                    <!--</h1>-->
+
+                <!--</div>-->
+
+                <!--<div class="sidebar-pane" id="messages">-->
+                    <!--<h1 class="sidebar-header">-->
+                        <!--Messages-->
+                        <!--<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>-->
+
+
+                    <!--</h1>-->
+                <!--</div>-->
+
+                <!--<div class="sidebar-pane" id="settings">-->
+                    <!--<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>-->
+                <!--</div>-->
+            </div>
+        </div>
+        </header>
+        <div class="container">
+            <div class="row" style= "height:40%">
+                <!--<div class="col-lg-12">-->
+                    <!-- Rending the first map -->
+                    <div id="combinedMap" class="col-sm-12 sidebar-map">
+                        <script>
+                                isIE=document.all;
+                            isNN=!document.all&&document.getElementById;
+                            isN4=document.layers;
+                            isActive=false;
+
+                            function MoveInit(e){
+                                topOne=isIE ? "BODY" : "HTML";
+                                whichOne=isIE ? document.all.FloatingLayer : document.getElementById("FloatingLayer");
+                                ActiveOne=isIE ? event.srcElement : e.target;
+                                while (ActiveOne.id!="titleBar"&&ActiveOne.tagName!=topOne){
+                                    ActiveOne=isIE ? ActiveOne.parentElement : ActiveOne.parentNode;
+                                }
+                                if (ActiveOne.id=="titleBar"){
+                                    offsetx=isIE ? event.clientX : e.clientX;
+                                    offsety=isIE ? event.clientY : e.clientY;
+                                    nowX=parseInt(whichOne.style.left);
+                                    nowY=parseInt(whichOne.style.top);
+                                    MoveEnabled=true;
+                                    document.onmousemove=Move;
+                                }
+                            }
+
+                            function Move(e){
+                                if (!MoveEnabled) return;
+                                whichOne.style.left=isIE ? nowX+event.clientX-offsetx : nowX+e.clientX-offsetx;
+                                whichOne.style.top=isIE ? nowY+event.clientY-offsety : nowY+e.clientY-offsety;
+                                return false;
+                            }
+
+                            function MoveN4(whatOne){
+                                if (!isN4) return;
+                                N4=eval(whatOne);
+                                N4.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
+                                N4.onmousedown=function(e){
+                                    N4.captureEvents(Event.MOUSEMOVE);
+                                    N4x=e.x;
+                                    N4y=e.y;
+                                }
+                                N4.onmousemove=function(e){
+                                    if (isActive){
+                                        N4.moveBy(e.x-N4x,e.y-N4y);
+                                        return false;
+                                    }
+                                }
+                                N4.onmouseup=function(){
+                                    N4.releaseEvents(Event.MOUSEMOVE);
+                                }
+                            }
+
+                            function ToggleFloatingLayer(DivID, iState) // 1 visible, 0 hidden
+                            {
+                                if(document.layers)	   //NN4+
+                                {
+                                    document.layers[DivID].visibility = iState ? "show" : "hide";
+                                }
+                                else if(document.getElementById)	  //gecko(NN6) + IE 5+
+                                {
+                                    var obj = document.getElementById(DivID);
+                                    obj.style.visibility = iState ? "visible" : "hidden";
+                                }
+                                else if(document.all)	// IE 4
+                                {
+                                    document.all[DivID].style.visibility = iState ? "visible" : "hidden";
+                                }
+                            }
+
+                            document.onmousedown=MoveInit;
+                            document.onmouseup=Function("MoveEnabled=false");
+
+                                $(window).load(function() {
+                                    show();
+                                });
+
+
+                                function show() {
+                                    $('#loading').hide();
+                                    $('#container').fadeIn();
+                                };
+
+                                setTimeout(show, 3000);
+
+                            init_render()
+                        </script>
+                    </div>
+                <!--</div>-->
+
+            </div>
+        </div>
+    <!--</header>-->
+
+
+    <!-- Compare Cities Section -->
+    <section id="portfolio">
+        <div class="container">
+			<!-- Rending the small map views -->
+
+            <div id="dual-map-view">
+                <div id="leftMap" class="col-sm-5">
+                    <!--<script> render_small_left([42.340966, -71.098470]) </script>-->
+                </div>
+                <div  class="col-sm-2"></div>
+                <div id="rightMap" class="col-sm-5">
+                  <!--<script> render_small_right([40.716762, -73.980794]) </script>-->
+                </div>
+            </div>
+			
+            <div class="col-sm-5">
+				<script></script>
+                <h3 id='compareCities1_header'></h3>
+                <div class="comparison-SVG" id="compareCities1_1"></div>
+                <div class="comparison-SVG" id="compareCities1_2"></div>
+                <div class="comparison-SVG" id="compareCities1_3"></div>
+				<div class="comparison-SVG" id="compareCities1_4"></div>
+            </div>
+			<div  class="col-sm-2"></div>
+            <div class="col-sm-5">
+                <h3 id='compareCities2_header'></h3>
+                <div class="comparison-SVG" id="compareCities2_1"></div>
+                <div class="comparison-SVG" id="compareCities2_2"></div>
+                <div class="comparison-SVG" id="compareCities2_3"></div>
+				<div class="comparison-SVG" id="compareCities2_4"></div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!--&lt;!&ndash; About Section &ndash;&gt;-->
+    <!--<section class="success" id="about">-->
+        <!--<div class="container">-->
+        <!--</div>-->
+    <!--</section>-->
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <a href="dragit-master/example/nations.html" target="_blank"><img src="images/Cities.png" width="90%" height="50%" style="margin-left:80px"></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>CS 7280-01</h3>
+                        <p>Data Visualization
+                            <br>Under Professor Michelle Borkin</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>VIZDOM</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Team Members</h3>
+                        <p> Sharmodeep Sarkar, &nbsp Sarita Joshi, &nbsp  Erica Gunn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; VizDom Fall 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+
+
+</body>
+
+
+
+</html>

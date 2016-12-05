@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <title>A Re-Recreation of Gapminder’s</title>
+  <meta name="description" content="Drag & Drop World Countries (if you can)">
+  <link href="../src/dragit.css" rel="stylesheet"/>
+  <script src="../lib/d3.v3.js"></script>
+  <script src="../src/dragit.js"></script>
+  <script src="../src/d3.legend.js"></script>
+</head>
+<title>A Re-Recreation of Gapminder</title>
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left:40px;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+html,body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+text {
+  cursor: default;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+#chart {
+  height: 506px;
+}
+
+text {
+  font-size: 10px;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.label {
+  fill: #777;
+}
+
+.year.label {
+  font: 500 196px "Helvetica Neue";
+  fill: #ddd;
+}
+
+.country.label  {
+  font: 500 96px "Helvetica Neue";
+  fill: #ddd;
+}
+
+.year.label.active {
+  fill: #aaa;
+}
+
+circle.pointTrajectory {
+   pointer-events: none;
+   stroke: lightgray;
+   fill: black;
+   opacity: 0;
+}
+
+path.lineTrajectory {
+  stroke-width: 2;
+  stroke-opacity: .5;
+  stroke: black;
+  fill: none;
+  pointer-events: none;
+}
+
+.selected {
+  stroke-width: 4;
+}
+
+    #chart{
+        margin-left:100px !important;
+    }
+    #slider-time{
+        margin-left:10px !important;
+    }
+    #min-time{
+        margin-left:50px !important;
+        padding-left: 50px;
+    }
+
+     /*{*/
+        /*font-size: 10px;*/
+    /*}*/
+
+
+
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;
+}
+
+</style>
+
+<h1>Citation: Gapminder, Trend of cities 24 * 7 </h1>
+
+<i>Use your mouse to click and drag cities (represented as circles) to explore the number of check-ins over hours/weekdays</i></p>
+
+<div id="chart" style="margin:0px"></div>
+<span id="min-time">00:00</span>
+<input type="range" name="points" min="0" max="23" step="1" value="0" id="slider-time" style="width:1200px">
+<span id="max-time">24:00</span>
+<br>
+<p>
+Original creation by <a href="http://www.gapminder.org/world/">Gapminder</a> using <a href="https://github.com/RandomEtc/mind-gapper-js">Tom Carden</a> JavaScript version.<br>
+Recreation by <a href="http://bost.ocks.org/mike/nations/">Mike Bostock</a> with <a href="http://d3js.org/">D3.js</a>.<br>
+
+</p>
+<br>
+
+<script>
+
+// Various accessors that specify the four dimensions of data to visualize.
+function x(d) { return d.food; }   //income
+function y(d) { return d.checkin; }   //Life exp
+
+
+/*
+ "City": "Vegas",
+ "City": "Charlotte",
+ "City": "Edinburgh",
+ "City": "Kalsruhe",
+ "City": "Madison",
+ "City": "Montreal",
+ "City": "Phoenix",
+ "City": "Pittsburgh",
+ "City": "Urbana",
+ "City": "Waterloo"
+
+ Las Vegas	486903	453787	454887	487255	644689	795787	652114	3975422
+ Montreal	14178	14657	15269	16996	22657	28871	22446	135074
+ Champaign	2656	2823	3132	3250	4264	5280	3587	24992
+ Edinburgh	7132	7372	7451	8396	9517	11937	9298	61103
+ Charlotte	53975	58467	60857	63918	81733	96324	68291	483565
+ Waterloo	740	782	812	827	886	994	744	5785
+ Karlsruhe	172	171	146	191	276	299	206	1461
+ Madison	12072	12980	13202	14212	20310	26408	17185	116369
+ Phoenix	146038	149622	157761	166469	220521	246515	190342	1277268
+ Pittsburgh	24902	28244	28844	30017	41820	51394	32942	238163
+
+
+*/
+
+function radius(d) {
+
+//    return d.population/1000;
+    if (d.City == "Vegas"){return 20;}
+    if (d.City == "Phoenix"){return 9;}
+    if (d.City == "Charlotte"){return 8;}
+    if (d.City == "Pittsburgh"){return 7;}
+    if (d.City == "Montreal"){return 6;}
+    if (d.City == "Madison"){return 5;}
+    if (d.City == "Edinburgh"){return 4;}
+    if (d.City == "Urbana"){return 3;}
+    if (d.City == "Waterloo"){return 2;}
+    if (d.City == "Kalsruhe"){return 1;}
+    else{
+        return 0;
+    }
+
+}
+function color(d) { return d.City; }  // region replaced by city
+function key(d) { return d.City; }  //name replaced by city
+
+// Chart dimensions.
+var margin = {top: 40.5, right: 19.5, bottom: 35.5, left: 49.5},
+    width = 1200 - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// Various scales. These domains make assumptions of data, naturally.
+var xScale = d3.scale.log().domain([1,300000]).range([0, width]),
+    yScale = d3.scale.linear().domain([0,346554]).range([height, 0]),
+//    radiusScale = d3.scale.sqrt().domain([0, 5e8]).range([0, 40]),
+     radiusScale = d3.scale.linear().domain([0,10]).range([3,20]),
+    colorScale = d3.scale.category10();
+
+// The x & y axes.
+var xAxis = d3.svg.axis().orient("bottom").scale(xScale).ticks(12, d3.format(",d")),
+    yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+var a1 = [];
+var count = 0;
+
+// Create the SVG container and set the origin.
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .attr("class", "gRoot")
+
+// Add the x-axis.
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+// Add the y-axis.
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+// Add an x-axis label.
+svg.append("text")
+    .attr("class", "x label")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height + 32)
+    .style("font-size",15)
+    .text("Number check-ins count for the top category i.e. Food ");
+
+// Add a y-axis label.
+svg.append("text")
+    .attr("class", "y label")
+    .attr("text-anchor", "end")
+    .attr("y", 6)
+    .attr("dy", ".75em")
+    .attr("transform", "rotate(-90)")
+    .style("font-size",20)
+    .text("Total number of check-ins for the city");
+
+// Add the year label; the value is set on transition.
+var label = svg.append("text")
+    .attr("class", "year label")
+    .attr("text-anchor", "end")
+    .attr("y", height - 24)
+    .attr("x", width)
+    .text(0);
+
+// Add the country label; the value is set on transition.
+var countrylabel = svg.append("text")
+    .attr("class", "country label")
+    .attr("text-anchor", "start")
+    .attr("y", 80)
+    .attr("x", 25)
+//    .attr("data-legend",function(d) { return d.City;})
+    .text(" ");
+
+
+legend = svg.append("g")
+    .attr("class","legend")
+    .attr("transform","translate(600,30)")
+    .style("font-size","16px")
+    .call(d3.legend);
+
+var first_time = true;
+
+// Load the data.
+d3.json("../data/city_all_cate.json", function(nations) {
+
+//    nations.forEach(function(d) {  //data is ok
+//        console.log("hello data",d.City);
+//    });
+
+  // A bisector since many nation's data is sparsely-defined.
+  var bisect = d3.bisector(function(d) { return d[0]; });
+//  console.log(bisect);
+
+
+//  console.log(interpolateData(0));
+
+  // Add a dot per nation. Initialize the data at 1800, and set the colors.
+  var dot = svg.append("g")
+      .attr("class", "dots")
+    .selectAll(".dot")
+      .data(interpolateData(0))
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("data-legend",function(d) { return d.City;})
+      .style("fill", function(d) { return colorScale(color(d)); })
+      .call(position)
+      .on("mousedown", function(d, i) {
+
+      })
+      .on("mouseup", function(d, i) {
+        dot.classed("selected", false);
+        d3.select(this).classed("selected", !d3.select(this).classed("selected"));
+        dragit.trajectory.display(d, i, "selected");
+
+        //TODO: test if has been dragged
+        // Look at the state machine history and find a drag event in it?
+
+      })
+      .on("mouseenter", function(d, i) {
+        clear_demo();
+        if(dragit.statemachine.current_state == "idle") {
+          dragit.trajectory.display(d, i)
+          dragit.utils.animateTrajectory(dragit.trajectory.display(d, i), dragit.time.current, 1000)
+          countrylabel.text(d.City);
+          dot.style("opacity", .4)
+          d3.select(this).style("opacity", 1)
+          d3.selectAll(".selected").style("opacity", 1)
+        }
+      })
+      .on("mouseleave", function(d, i) {
+
+        if(dragit.statemachine.current_state == "idle") {
+          countrylabel.text("");
+          dot.style("opacity", 1);
+        }
+
+        dragit.trajectory.remove(d, i);
+      })
+      .call(dragit.object.activate)
+
+  // Add a title.
+  dot.append("title")
+      .text(function(d) { return "City:" + d.City +"\n" + "Check-in: "+ d.checkin+ "\n" +  "Category-food: " + d.food; });
+
+  // Start a transition that interpolates the data based on year.
+  svg.transition()
+      .duration(30000)
+      .ease("linear")
+
+  // Positions the dots based on data.
+  function position(dot) {
+    dot.attr("cx", function(d) { return xScale(x(d)); })   //xScale(x(d))
+       .attr("cy", function(d) { return yScale(y(d)); })    //yScale(y(d))
+       .attr("r", function(d) { return radiusScale(radius(d)); });    //radiusScale(radius(d))
+  }
+
+  // Defines a sort order so that the smallest dots are drawn on top.
+  function order(a, b) {
+    return radius(b) - radius(a);
+  }
+
+
+    // After the transition finishes, you can mouseover to change the year.
+    function enableInteraction() {
+        var yearScale = d3.scale.linear()
+            .domain([0, 23])
+            .range([width + 10, width + width - 10])
+            .clamp(true);
+
+        // Cancel the current transition, if any.
+        svg.transition().duration(0);
+
+        label
+            .on("mouseover", mouseover)
+            .on("mouseout", mouseout)
+            .on("mousemove", mousemove)
+            .on("touchmove", mousemove);
+
+        function mouseover() {
+            label.classed("active", true);
+        }
+
+        function mouseout() {
+            label.classed("active", false);
+        }
+
+        function mousemove() {
+            displayYear(yearScale.invert(d3.mouse(this)[0]));
+        }
+    }
+
+    // Tweens the entire chart by first tweening the year, and then the data.
+    // For the interpolated data, the dots and label are redrawn.
+    function tweenYear() {
+        var year = d3.interpolateNumber(0, 23);
+        return function(t) { displayYear(year(t)); };
+    }
+
+//
+//    (function() {
+//        d3.legend = function(g) {
+//            g.each(function() {
+//                var g= d3.select(this),
+//                    items = {},
+//                    svg = d3.select(g.property("nearestViewportElement")),
+//                    legendPadding = g.attr("data-style-padding") || 5,
+//                    lb = g.selectAll(".legend-box").data([true]),
+//                    li = g.selectAll(".legend-items").data([true])
+//
+//                lb.enter().append("rect").classed("legend-box",true)
+//                li.enter().append("g").classed("legend-items",true)
+//
+//                svg.selectAll("[data-legend]").each(function() {
+//                    var self = d3.select(this)
+//                    items[self.attr("data-legend")] = {
+//                        pos : self.attr("data-legend-pos") || this.getBBox().y,
+//                        color : self.attr("data-legend-color") != undefined ? self.attr("data-legend-color") : self.style("fill") != 'none' ? self.style("fill") : self.style("stroke")
+//                    }
+//                })
+//
+//                items = d3.entries(items).sort(function(a,b) { return a.value.pos-b.value.pos})
+//
+//
+//                li.selectAll("text")
+//                    .data(items,function(d) { return d.key})
+//                    .call(function(d) { d.enter().append("text")})
+//                    .call(function(d) { d.exit().remove()})
+//                    .attr("y",function(d,i) { return i+"em"})
+//                    .attr("x","1em")
+//                    .text(function(d) { ;return d.key})
+//
+//                li.selectAll("circle")
+//                    .data(items,function(d) { return d.key})
+//                    .call(function(d) { d.enter().append("circle")})
+//                    .call(function(d) { d.exit().remove()})
+//                    .attr("cy",function(d,i) { return i-0.25+"em"})
+//                    .attr("cx",0)
+//                    .attr("r","0.4em")
+//                    .style("fill",function(d) { console.log(d.value.color);return d.value.color})
+//
+//                // Reposition and resize the box
+//                var lbbox = li[0][0].getBBox()
+//                lb.attr("x",(lbbox.x-legendPadding))
+//                    .attr("y",(lbbox.y-legendPadding))
+//                    .attr("height",(lbbox.height+2*legendPadding))
+//                    .attr("width",(lbbox.width+2*legendPadding))
+//            })
+//            return g
+//        }
+//    })()
+
+
+    // Updates the display to show the specified year.
+  function displayYear(year) {
+    dot.data(interpolateData(year+dragit.time.min), key).call(position).sort(order);
+    label.text(dragit.time.min + Math.round(year));
+  }
+
+//    // Start a transition that interpolates the data based on year.
+//    svg.transition()
+//        .duration(30000)
+//        .ease("linear")
+//        .tween("year", tweenYear)
+//        .each("end", enableInteraction);
+
+
+    // Interpolates the dataset for the given (fractional) year.
+  function interpolateData(year) {
+    var a =  nations.map(function(d) {
+//        console.log(d.food);
+      return {
+
+          City: d.City,
+        Category: d.Category,
+        food: dummy(d, 'food',year),//(function(d) { console.log(d.food); return 6053; }),  //d.food[1],   //6053,//interpolateValues(d.food, year),
+        checkin:  dummy(d, 'checkin',year),//20002,//d.checkin[1],  //20063, //interpolateValues(d.checkin, year),  //replaced population also by checkin
+        population: dummy(d, 'checkin',year)  //20002 //d.checkin[1]   //20063 //interpolateValues(d.checkin, year)
+
+      };
+    });
+    console.log(a);
+    return a;
+  }
+
+
+  function dummy(v, flag, year){
+//      a1.push(v);
+//      count += 1;
+//      console.log(v, "hi", count, v.City);
+//      return 6053;
+//      console.log(temp[v.City], "before");
+      //var m = temp[v.City]; console.log()
+      /*
+      if(temp[v.City] < 24){
+//          console.log(temp[v.City], "after");
+          temp[v.City] += 1;
+          if(temp[v.City] == 24){
+              temp[v.City] = 23;
+          }
+          var k = temp[v.City];
+//          console.log(k,"k",temp);
+//          console.log("rand", v[flag], flag);
+          var r = v[flag][k][1];
+//          console.log("r", r, flag,"ss",v[flag][k],v.City);
+*/
+          var r = v[flag][year][1];
+//          console.log(r);
+
+          return r;
+
+  }
+    console.log("length", a1.length);
+  // Finds (and possibly interpolates) the value for the specified year.
+  function interpolateValues(values, year) {
+////      var a;
+//      for(i =0; i< values.length; i++){
+//          if(values[i][0] == year){
+//              console.log(values[i][1]);
+//              return values[i][1];
+//          }
+//
+//
+//      }
+//      var a = values
+//      console.log("sarita", values);
+//      console.log("year s",year);
+      console.log(values.length);
+      return 2;
+//    var i = bisect.left(values, year, 0, values.length - 1),
+//        a = values[i];
+//    if (i > 0) {
+//      var b = values[i - 1],
+//          t = (year - a[0]) / (b[0] - a[0]);
+//      return a[1] * (1 - t) + b[1] * t;
+//    }
+//    return a[1];
+//      console.log(values);
+//      return 4;
+//      return a;
+  }
+
+  init();
+
+  function update(v, duration) {
+    dragit.time.current = v || dragit.time.current;
+    displayYear(dragit.time.current)
+    d3.select("#slider-time").property("value", dragit.time.current);
+  }
+
+  function init() {
+
+    dragit.init(".gRoot");
+
+    dragit.time = {min:0, max:24, step:1, current:0}
+    dragit.data = d3.range(nations.length).map(function() { return Array(); })
+
+    for(var yy = 0; yy<24; yy++) {
+
+      interpolateData(yy).filter(function(d, i) {
+        dragit.data[i][yy-dragit.time.min] = [xScale(x(d)), yScale(y(d))];
+
+      })
+    }
+
+    dragit.evt.register("update", update);
+
+    //d3.select("#slider-time").property("value", dragit.time.current);
+
+    d3.select("#slider-time")
+      .on("mousemove", function() {
+        update(parseInt(this.value), 500);
+        clear_demo();
+      })
+
+    var end_effect = function() {
+      countrylabel.text("");
+      dot.style("opacity", 1)
+    }
+
+    dragit.evt.register("dragend", end_effect)
+  }
+
+function clear_demo() {
+  if(first_time) {
+     svg.transition().duration(0);
+    first_time = false;
+    window.clearInterval(demo_interval);
+    countrylabel.text("");
+    dragit.trajectory.removeAll();
+    d3.selectAll(".dot").style("opacity", 1)
+  }
+}
+
+
+//, "Madison", "Montreal", "Phoenix", "Pittsburgh", "Urbana", "Waterloo"
+
+function play_demo() {
+
+  var ex_nations = ["Vegas","Charlotte", "Edinburgh", "Madison", "Montreal", "Phoenix", "Pittsburgh", "Urbana", "Waterloo"];//["China", "India", "Indonesia", "Italy", "France", "Spain", "Germany", "United States"]
+  var index_random_nation = null;
+  var random_index = Math.floor(Math.random() * ex_nations.length);
+  var random_nation = nations.filter(function(d, i) {
+    if(d.City == ex_nations[random_index]) {
+      index_random_nation = i;
+      return true;
+    }
+  })[0];
+
+  var random_nation = nations[index_random_nation];
+
+  dragit.trajectory.removeAll();
+  dragit.trajectory.display(random_nation, index_random_nation);
+  countrylabel.text(random_nation.City);
+
+  dragit.utils.animateTrajectory(dragit.lineTrajectory, dragit.time.min, 2000)
+
+  d3.selectAll(".dot").style("opacity", .4)
+
+  d3.selectAll(".dot").filter(function(d) {
+    return d.City == random_nation.City;
+  }).style("opacity", 1)
+}
+
+var demo_interval = null;
+
+
+    setTimeout(function() {
+        legend
+            .style("font-size","20px")
+            .attr("data-style-padding",10)
+            .call(d3.legend)
+    },1000);
+
+setTimeout(function() {
+  if(first_time) {
+    play_demo()
+    demo_interval = setInterval(play_demo, 3000)
+  }
+}, 1000);
+
+
+
+
+
+// d3.legend.js
+// (C) 2012 ziggy.jonsson.nyc@gmail.com
+// MIT licence
+
+});
+
+
+</script>
+<!--<script>-->
+  <!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+  <!--(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+  <!--m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+  <!--})(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
+  <!--ga('create', 'UA-57485706-1', 'auto');-->
+  <!--ga('send', 'pageview');-->
+<!--</script>-->
+</body>
+</html>

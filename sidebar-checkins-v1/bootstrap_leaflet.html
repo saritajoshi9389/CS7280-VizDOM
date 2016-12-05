@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Leaflet with Bootstrap</title>
+	<!-- 	Style Sheets	-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<link rel="stylesheet" href="css/leaflet-sidebar.css" />
+	<link rel="stylesheet" href="css/custom-style.css" />
+	<link rel="stylesheet" href="css/leaflet-search.css" />
+
+	<!--	Javascripts		-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="./lib/d3.v4.2.6.min.js"></script>
+	<script src="./lib/crossfilter.js"></script>
+    <script src="js/leaflet-sidebar.js"></script>
+	<script type="text/javascript" src="js/leaflet_data_render.js"></script>
+	<script type="text/javascript" src="js/small-pane-left.js"></script>
+	<script type="text/javascript" src="js/small-pane-right.js"></script>
+	<script type="text/javascript" src="js/dual_view_wrapper.js"></script>
+	<script type="text/javascript" src="js/view-visibility-ctrl.js"></script>
+	<script src="js/L.Polyline.SnakeAnim.js"></script>
+	<script src="js/leaflet-search.js"></script>
+	<!--<script src="js/dataLoader.js"></script>-->
+	<script src="js/dataLoader_new.js"></script>
+	<script src="js/sidebar1.js"></script>
+</head>
+
+<body>
+<nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+        <div class="navbar-header">			
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> 
+            <a class="navbar-brand" href="#">Yelp Data Analysis</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+		<!--
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="" target="_blank">Home</a></li>
+                <li><a href="" target="_blank">About</a></li>
+                <li><a href="" target="_blank">Contact</a></li>
+            </ul>
+        </div>	-->
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+		<!-- clear-row is a custom class used to add space whereever needed -->
+		<div id="clear-row" class="col-sm-12"></div>
+		<!-- Right side navigation bar -->
+		<div id="sidebar" class="col-sm-12 sidebar collapsed">
+			<!-- Nav tabs -->
+			<!-- Icons can be changed using ::
+				http://fontawesome.io/icons/
+			-->
+			<div class="sidebar-tabs">
+				<ul role="tablist">
+					<li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+					<li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+					<li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+				</ul>
+				
+				<ul role="tablist">
+					<li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+				</ul>
+			</div>
+
+			<!-- Tab panes -->
+			<div class="sidebar-content">
+				<div class="sidebar-pane" id="home">
+					<h1 class="sidebar-header">
+						Menu
+						<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+					</h1>
+
+					<h3 id="city-name"> City Name </h3>
+					<br/>
+					<p id="num-reviews"></p>
+
+					<p id="num-checkins"></p>
+
+					<div id="sidebar1"></div>
+					<p>Most users leave just one review; some leave up to 10</p>
+					<br>
+
+					<p id="avg-stars"></p>
+					<div id="sidebar2"></div>
+					<p>Most people rate either high or low; fewer rate in between</p>
+
+					<!--
+					<button onclick='draw_route()'>DRAW ROUTE</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button onclick='clear_route()'>CLEAR ROUTE</button>
+					<br/><br/><br/>
+
+					<button onclick='goto_dual_view(
+								[42.337317, -71.091045],
+								[40.716762, -73.980794])'>DUAL VIEW</button>
+					-->
+
+				</div>
+
+				<div class="sidebar-pane" id="profile">
+					<h1 class="sidebar-header">
+						Profile
+						<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+					</h1>
+				</div>
+
+				<div class="sidebar-pane" id="messages">
+					<h1 class="sidebar-header">
+						Messages
+						<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+					</h1>
+				</div>
+
+				<div class="sidebar-pane" id="settings">
+					<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Rending the first map -->
+		<div id="map" class="col-sm-12 sidebar-map">
+			<script> init_render() </script>
+		</div>
+		
+		<!-- Rending the small map views -->
+		
+		<div id="dual-map-view">
+			<div id="map-left" class="col-sm-5">
+				<script> render_small_left([42.340966, -71.098470]) </script>
+			</div>
+			<div  class="col-sm-2"></div>
+			<div id="map-right" class="col-sm-5">
+				<script> render_small_right([40.716762, -73.980794]) </script>
+			</div>
+		</div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <footer>
+                <p>© Copyright VizDom</p>
+            </footer>
+        </div>
+    </div>
+	
+</div>
+</body>
+</html>                                		

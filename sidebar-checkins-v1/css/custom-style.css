@@ -1,0 +1,548 @@
+html, body{
+            height: 100%;
+        }
+
+#clear-row{
+	*margin-top: 3%;
+}
+		
+#map{
+	height: 100%;
+	/*height: 850px;*/
+    /*width: 160%;*/
+	margin-top: 1px;
+	margin-bottom: 1px;
+	/**margin-left: 1%;650px;*/
+	/**margin-right: 1%;*/
+	border: 1px solid black;
+    margin-right: auto;
+
+}
+#combinedMap{
+    /*height: 850px;*/
+    /*height: 850px;*/
+    height: 260%;
+    /*width: 100% !important;*/
+    margin-top: 1px;
+    margin-bottom: 1px;
+    /**margin-left: 1%;650px;*/
+    /**margin-right: 1%;*/
+    border: 1px solid black;
+    margin-right: auto;
+
+}
+
+#map-left{
+	height:400px;
+	*width: 80px;
+	*margin-left: 5px;	
+	border: 1px solid black;
+}
+
+#map-right{
+	height:400px;
+	*width: 80px;
+	*margin-left: 5px;
+	border: 1px solid black;
+}
+
+#dual-map-view{
+	cellpadding:10;
+}
+
+/*body { margin:0; padding:0; }*/
+/*.map { position:absolute; top:0; bottom:0; width:100%; }*/
+
+/* adding for text label for city */
+
+.text-labels-new {
+	font-size: 1.5em;
+	font-weight: 700;
+	opacity: 1;
+    color: navy;
+    margin-left: -110px !important;
+    margin-top: -40px !important;
+    text-transform: uppercase;
+    font-style: italic;
+
+	/* Use color, background, set margins for offset, etc */
+}
+
+#myNavbar .container {
+	text-align: center;
+}
+
+#myNavbar .navbar-brand {
+	font-weight: 700;
+	background-color: red;
+    fill: black;
+}
+
+/*.sidebar-tabs {*/
+	/*padding-top: 200px;*/
+/*}*/
+
+
+div.leaflet-control-zoom.leaflet-bar.leaflet-control {
+    margin-top: 100px;
+}
+
+/*custom for popups*/
+
+.leaflet-popup-pane, .leaflet-control {
+	margin-top: 900% !important;
+}
+
+/*custom for side-bar*/
+
+.sidebar-content {
+    background-color: whitesmoke; /*palegoldenrod;*/
+    color: black;
+    font-family: Helvetica, Arial;
+}
+#city-name {
+    font-size: 14px;
+    display: block;
+    -webkit-margin-before: 0.2em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+#num-reviews{
+    font-size: 14px;
+    display: block;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+#num-checkins{
+    font-size: 14px;
+    display: block;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+#mycustom{
+    font-size: 14px;
+    display: block;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+#mycustom1{
+    font-size: 14px;
+    display: block;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+#avg-stars {
+    font-size: 14px;
+    display: block;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.category-list {
+    font-size: 350%;
+    padding-left: 20px;
+    /*margin-right: -2%;*/
+    color: white;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: red;
+    color: #333;
+    /*padding-left: 7px;*/
+    /*padding-top:5px;*/
+    /*padding-bottom: 4px;*/
+    /*padding-right:7px;*/
+    /*margin-bottom: 1px;*/
+    /*temporary margin added to make sure categories don't flow off page*/
+    /*margin-right:30px;*/
+    /*margin-top:7px;*/
+    font-size: 125%;
+    /*border: black;*/
+    /*cursor: pointer;*/
+}
+
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+    background-color: gray;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    height:47px !important;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: whitesmoke;
+    min-width: 350px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding-right:10px;
+    padding-left:10px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: yellow}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+.navbar-brand {
+      float: left !important;
+  }
+
+
+
+
+
+#bs-example-navbar-collapse-1 .collapse .navbar-collapse {
+    margin-left: 0px !important;
+}
+
+#mainNav .navbar .navbar-default .navbar-fixed-top .navbar-custom {
+    padding-left: 0% !important;
+}
+
+.navbar .container-fluid .navbar-brand {
+    margin-left: 0px; !important;
+}
+
+ .container {
+        /*min-width: 500px !important;*/
+        width: 100% !important;
+    }
+
+ /*Added for zoom down*/
+.leaflet-popup-pane, .leaflet-control {
+    cursor: auto;
+    margin-bottom: -850%;
+}
+
+.myreset{
+    color:gray;
+    padding-right: 20px;
+}
+
+.mybrush{
+    color:gray;
+}
+.btn .btn-primary {
+
+    font-size: 10px;
+}
+
+.btn .btn-default{
+    font-size: 10px;
+    color: pink !important;
+}
+
+.btn-default {
+    color: #333 !important;
+    background-color: lightblue !important;
+    border-color: #ccc !important;
+    margin-top: 25px;
+    margin-right: 10px;
+    font-weight: 100px;
+}
+
+.comparison-SVG{
+    width:100%;
+    height:100%;
+    background:white;
+    border:1px solid gray;
+}
+
+.leaflet-popup-pane, .leaflet-control {
+    cursor: auto;
+    margin-bottom: -850%;
+}
+
+.myrow {
+    padding-left: 10px;
+}
+
+.mytable{
+    margin-bottom: 10px;
+     margin-left: 10px;
+     margin-right: 10px;
+     margin-top: 10px;
+ }
+ 
+.city_compare_dropdown{
+    margin-bottom: 10px;
+     margin-left:  20px;
+     margin-right: 20px;
+     margin-top: 10px;
+	
+ }
+
+#city_compare{
+    margin-top:17px;
+}
+ 
+
+/*Tester*/
+.container {
+     /* min-width: 500px !important; */
+     width: 100% !important;
+     height: 100%;
+ }
+
+/*tester1*/
+div.leaflet-control-zoom.leaflet-bar.leaflet-control {
+    margin-top: 100px;
+    margin-top: 200px;
+    margin-top: 1500% !important;
+ }
+
+
+/*#combinedMap .col-lg-12 .sidebar-map{*/
+    /*padding-left: 1px !important;*/
+/*}*/
+
+#combinedMap .col-sm-12 {
+        width: 100%;
+        padding-left: 1px !important;
+    }
+#result {
+    background: #fff;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+
+    -webkit-box-shadow: 0 -1px 15px rgba(0,0,0, 0.2);
+    box-shadow: 0 -1px 15px rgba(0,0,0, 0.2);
+}
+
+#result input[type='text'] {
+    width: 260px;
+}
+
+/* Tooltip styling http://bl.ocks.org/Caged/6476579*/
+div.tooltip {
+    z-index:10;
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightgray;
+    border: 0px;
+    border-radius: 4px;
+}
+
+#portfolio {
+    padding-top:150px;
+}
+
+/*debug sidebar*/
+
+.sidebar {
+    height: 60% !important;
+}
+
+.sidebar-right .sidebar-tabs {
+    right: 0;
+    height: 100% !important;
+}
+
+#loading {
+    background: url('http://cdn.nirmaltv.com/images/generatorphp-thumb.gif');
+    height: 100px;
+    width: 100px;
+}
+
+#container {
+    display: none;
+}
+
+
+@media screen and  (min-width: 768px){
+    .navbar-custom .navbar-brand {
+        font-size: 5em !important;
+        /*-webkit-transition: all 0.3s;*/
+        /*-moz-transition: all 0.3s;*/
+        /*transition: all 0.3s;*/
+    }
+
+}
+
+
+@media (min-width: 768px){
+
+    .navbar-nav>li>a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 15px;
+        font-size: 30px;
+        margin-right: 30px;
+}
+
+    }
+
+
+.navbar-header {
+    /*float: left;*/
+    /*padding: 15px;*/
+    /*text-align: center;*/
+    width: 100%;
+}
+.navbar-brand
+{float:none;
+padding-top: 2%;}
+
+
+.sidebar {
+    margin-top: 15% !important;
+}
+
+
+.leaflet-popup-content {
+    margin: 13px 19px;
+    line-height: 1.4;
+    /* fill: blue; */
+    background-color: lightcyan;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+/*hide panel*/
+
+#portfolio {
+    padding-top: 150px;
+    display: none;
+}
+
+
+
+.d3-tip {
+    line-height: 1;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 100%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 1 !important; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.8); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+
+#intro-text{
+    font-size:16px;
+    line-height: 36px;
+    width:50%;
+    position:absolute;
+    left:25%;
+    top:10%;
+    font-style: normal;
+    color:white;
+    background:gray;
+    fill-opacity: 20%;
+    border-radius: 10px;
+    padding:25px;
+}

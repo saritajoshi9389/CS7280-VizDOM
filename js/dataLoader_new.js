@@ -16,7 +16,7 @@ window.location.href='#';
 
 queue()
     .defer(d3.csv, "Final_Data_With_Categories_112616.csv")
-    .defer(d3.csv, 'category_daily_checkin.csv')//daily_star_city.csv')//
+    .defer(d3.csv, 'Category_Daily_checkin.csv')//daily_star_city.csv')//
     .defer(d3.csv, 'businesses_per_city.csv')
     .defer(d3.csv, 'categories_per_city.csv')
     .defer(d3.csv, 'Business_star_data.csv')

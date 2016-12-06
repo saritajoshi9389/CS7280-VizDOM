@@ -510,6 +510,14 @@
                     <!-- Rending the first map -->
                     <div id="combinedMap" class="col-sm-12 sidebar-map">
                         <script>
+
+
+                            $('input[type=checkbox]').change(function(e){
+                                if ($('input[type=checkbox]:checked').length > 2) {
+                                    $(this).prop('checked', false)
+                                    alert("allowed only 2 cities allowed! You can brush the map if you want more cities");
+                                }
+                            })
                                 isIE=document.all;
                             isNN=!document.all&&document.getElementById;
                             isN4=document.layers;

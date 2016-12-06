@@ -91,7 +91,7 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
             }
             var merged = [].concat.apply([], accumulator);
             cityData = merged;
-            console.log("jugad", cityData);
+            // console.log("jugad", cityData);
 
         }
         else {
@@ -119,6 +119,7 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
         //console.log(cityData);
     }
     else{  //business is selected
+        console.log("uu", uniqueArray);
         d3.selectAll('#city-name').html(selectedBusiness);
         byCity.filter(); //clear filter
         cityData = byCity.filterExact(selectedCity).top(Infinity); //filter by city

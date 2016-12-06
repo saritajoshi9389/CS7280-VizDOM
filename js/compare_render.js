@@ -5,13 +5,17 @@ var city_centres = [
 				{'center':[43.465754,-80.522003] , 'name':'Waterloo'},
 				{'center':[40.439709, -79.993550] , 'name':'Pittsburgh'},
 				{'center':[35.232001, -80.858802] , 'name':'Charlotte'},
-				{'center':[40.104516,-88.228238] , 'name':'Urbana'},
+				{'center':[40.104516,-88.228238] , 'name':'Champaign'},
 				{'center':[33.453039,-112.081308] , 'name':'Phoenix'},
 				{'center':[36.222228, -115.284912] , 'name':'LasVegas'},
 				{'center':[43.069862,-89.428404] , 'name':'Madison'}
 			];	
 			
 function compare_cities (){
+
+        // alert("ya");
+        openComparator();
+
 
     toggle_visibility('portfolio');
 

@@ -318,6 +318,9 @@ div.leaflet-control-zoom.leaflet-bar.leaflet-control {
      height: 100%;
  }
 
+
+
+
 /*tester1*/
 div.leaflet-control-zoom.leaflet-bar.leaflet-control {
     margin-top: 100px;
@@ -545,4 +548,46 @@ padding-top: 2%;}
     fill-opacity: 20%;
     border-radius: 10px;
     padding:25px;
+}
+
+
+/*!* Remove margins and padding from the list, and add a black background color *!*/
+/*ul.nav {*/
+    /*list-style-type: none;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*overflow: hidden;*/
+    /*background-color: #333;*/
+/*}*/
+
+/*!* Float the list items side by side *!*/
+/*ul.nav li {float: left;}*/
+
+/*!* Style the links inside the list items *!*/
+/*ul.nav li a {*/
+    /*display: inline-block;*/
+    /*color: #f2f2f2;*/
+    /*text-align: center;*/
+    /*padding: 14px 16px;*/
+    /*text-decoration: none;*/
+    /*transition: 0.3s;*/
+    /*font-size: 17px;*/
+/*}*/
+
+/*!* Change background color of links on hover *!*/
+/*ul.nav li a:hover {background-color: #555;}*/
+
+/*!* Hide the list item that contains the link that should open and close the topnav on small screens *!*/
+/*ul.nav li.icon {display: none;}*/
+.dropdown .btn-default:hover
+{
+    background-image:none;
+    background-color:cornflowerblue !important;
+
+
+}
+
+.btn-default:hover {
+    background-image: none;
+    background-color: cornflowerblue !important;
 }

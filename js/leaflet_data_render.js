@@ -18,7 +18,7 @@ var cities = [
 				{'latitude':43.465754,'longitude': -80.522003 , 'name':'Waterloo','code':'ON'},
 				{'latitude':40.439709,'longitude': -79.993550 , 'name':'Pittsburgh','code':'PA'},
 				{'latitude':35.232001,'longitude': -80.858802 , 'name':'Charlotte','code':'NC'},
-				{'latitude':40.104516,'longitude': -88.228238 , 'name':'Urbana','code':'IL'},
+				{'latitude':40.104516,'longitude': -88.228238 , 'name':'Champaign','code':'IL'},
 				{'latitude':33.453039,'longitude': -112.081308 , 'name':'Phoenix','code':'AZ'},
 				{'latitude':36.222228,'longitude': -115.284912 , 'name':'LasVegas','code':'NV'},
 				{'latitude':43.069862,'longitude': -89.428404 , 'name':'Madison','code':'WI'}
@@ -142,8 +142,13 @@ function render_data(dataPoints,mapCenter,is_init){
 	// L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 	// preparing variables for markers and popups
 	for (i = 0; i < dataPoints.length; i++) { 
+<<<<<<< HEAD
 		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ dataPoints[i].stars;	//value searched
 		var title = dataPoints[i].name;	//value searched
+=======
+		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ Math.ceil(dataPoints[i].stars);	//value searched
+		var title = dataPoints[i].name;
+>>>>>>> origin/master
 		//if (is_init == true)
 		//	var	loc = dataPoints[i].loc;		//position found
 		//else{

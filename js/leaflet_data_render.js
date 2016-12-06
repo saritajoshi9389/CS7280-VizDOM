@@ -16,7 +16,7 @@ var cities = [
 				{'latitude':43.465754,'longitude': -80.522003 , 'name':'Waterloo','code':'ON'},
 				{'latitude':40.439709,'longitude': -79.993550 , 'name':'Pittsburgh','code':'PA'},
 				{'latitude':35.232001,'longitude': -80.858802 , 'name':'Charlotte','code':'NC'},
-				{'latitude':40.104516,'longitude': -88.228238 , 'name':'Urbana','code':'IL'},
+				{'latitude':40.104516,'longitude': -88.228238 , 'name':'Champaign','code':'IL'},
 				{'latitude':33.453039,'longitude': -112.081308 , 'name':'Phoenix','code':'AZ'},
 				{'latitude':36.222228,'longitude': -115.284912 , 'name':'LasVegas','code':'NV'},
 				{'latitude':43.069862,'longitude': -89.428404 , 'name':'Madison','code':'WI'}

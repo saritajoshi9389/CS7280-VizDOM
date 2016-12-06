@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="717d56b6-799f-48e2-ba96-d5c45ed1c9e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/compare_render.js" afterPath="$PROJECT_DIR$/js/compare_render.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/leaflet_data_render.js" afterPath="$PROJECT_DIR$/js/leaflet_data_render.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -28,7 +27,7 @@
       <file leaf-file-name="dataLoader_new.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/dataLoader_new.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="135">
               <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
               <folding />
             </state>
@@ -38,25 +37,35 @@
       <file leaf-file-name="leaflet_data_render.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/leaflet_data_render.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2520">
-              <caret line="168" column="501" lean-forward="false" selection-start-line="168" selection-start-column="501" selection-end-line="168" selection-end-column="501" />
+            <state relative-caret-position="180">
+              <caret line="18" column="81" lean-forward="false" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="81" />
               <folding>
-                <marker date="1480983251000" expanded="true" signature="3423:3496" ph="..." />
-                <marker date="1480983251000" expanded="true" signature="4446:4452" ph="©" />
-                <marker date="1480983251000" expanded="true" signature="6525:6537" ph="..." />
-                <marker date="1480983251000" expanded="true" signature="6604:6615" ph="..." />
-                <marker date="1480983251000" expanded="true" signature="6631:6637" ph=" " />
-                <marker date="1480983251000" expanded="true" signature="6637:6643" ph=" " />
-                <marker date="1480983251000" expanded="true" signature="6695:6707" ph="..." />
-                <marker date="1480983251000" expanded="true" signature="6764:6776" ph="..." />
-                <marker date="1480983251000" expanded="true" signature="6826:6838" ph="..." />
-                <marker date="1480983251000" expanded="true" signature="9467:9522" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="3426:3499" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="4449:4455" ph="©" />
+                <marker date="1480983803000" expanded="true" signature="6528:6540" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="6607:6618" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="6634:6640" ph=" " />
+                <marker date="1480983803000" expanded="true" signature="6640:6646" ph=" " />
+                <marker date="1480983803000" expanded="true" signature="6698:6710" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="6767:6779" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="6829:6841" ph="..." />
+                <marker date="1480983803000" expanded="true" signature="9470:9525" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="compare_render.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/compare_render.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="68" lean-forward="false" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -75,8 +84,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/dataLoader_new.js" />
-        <option value="$PROJECT_DIR$/js/leaflet_data_render.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/leaflet_data_render.js" />
+        <option value="$PROJECT_DIR$/js/compare_render.js" />
       </list>
     </option>
   </component>
@@ -136,6 +146,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CS7280-VizDOM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CS7280-VizDOM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Category-wise segregation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -235,12 +259,12 @@
       <option name="presentableId" value="Default" />
       <updated>1480980236694</updated>
       <workItem from="1480980237915" duration="984000" />
-      <workItem from="1480983181824" duration="216000" />
+      <workItem from="1480983181824" duration="541000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1200000" />
+    <option name="totallyTimeSpent" value="1525000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="813" extended-state="6" />
@@ -292,9 +316,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/category_daily_checkin.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Business_star_data.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/dataLoader_new.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="135">
           <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding />
         </state>
@@ -302,27 +350,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/leaflet_data_render.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="168" column="501" lean-forward="false" selection-start-line="168" selection-start-column="501" selection-end-line="168" selection-end-column="501" />
+        <state relative-caret-position="180">
+          <caret line="18" column="81" lean-forward="false" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="81" />
           <folding>
-            <marker date="1480983251000" expanded="true" signature="3423:3496" ph="..." />
-            <marker date="1480983251000" expanded="true" signature="4446:4452" ph="©" />
-            <marker date="1480983251000" expanded="true" signature="6525:6537" ph="..." />
-            <marker date="1480983251000" expanded="true" signature="6604:6615" ph="..." />
-            <marker date="1480983251000" expanded="true" signature="6631:6637" ph=" " />
-            <marker date="1480983251000" expanded="true" signature="6637:6643" ph=" " />
-            <marker date="1480983251000" expanded="true" signature="6695:6707" ph="..." />
-            <marker date="1480983251000" expanded="true" signature="6764:6776" ph="..." />
-            <marker date="1480983251000" expanded="true" signature="6826:6838" ph="..." />
-            <marker date="1480983251000" expanded="true" signature="9467:9522" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="3426:3499" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="4449:4455" ph="©" />
+            <marker date="1480983803000" expanded="true" signature="6528:6540" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="6607:6618" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="6634:6640" ph=" " />
+            <marker date="1480983803000" expanded="true" signature="6640:6646" ph=" " />
+            <marker date="1480983803000" expanded="true" signature="6698:6710" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="6767:6779" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="6829:6841" ph="..." />
+            <marker date="1480983803000" expanded="true" signature="9470:9525" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/compare_render.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+        <state relative-caret-position="105">
+          <caret line="7" column="68" lean-forward="false" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
           <folding />
         </state>
       </provider>

@@ -6,9 +6,11 @@ var zoomLevel = 0;
 var dPoints;  // testing for global
 var count = 0;
 const MIN_ZOOM = 3.5;
-const MAX_ZOOM = 12;
+const MAX_ZOOM = 15;
 var current_mapCenter;
 var init_mode ;
+var brush_mode = false;
+var RADIUS = 800000;
 var cities = [
 				{'latitude':55.963326,'longitude': -3.191736, 'name':'Edinburgh' , 'code':'EDH'},
 				{'latitude':49.008558,'longitude': 8.400305 , 'name':'Karlsruhe','code':'BW'},
@@ -32,6 +34,7 @@ function init_render(){
 	//dataPoints = loadDataOnMap(byState,'AZ');
 	init_center =  [55.963326 -5,-3.191736 -20];  //[45.638835, 50.436081+120];//[37.235613, -22.942755];49.638835, -37.436081//35.248855, -43.105153[35.248855, -43.105153];//[37.235613, -22.942755];
 	//alert('bb');
+	current_mapCenter = init_center;
 	render_data(cities,init_center,true);
 }
 
@@ -64,12 +67,7 @@ function onMarkerClick(e) {
 			}
 
         }
-        else{
-		/*
-         console.log('clickedLatlng',clickedLatlng);
-         console.log(element.loc);
-         console.log('N');*/
-        }
+       
     });
     if (e.originalEvent.target.title != selectedCity){
         selectedBusiness = e.originalEvent.target.title;
@@ -87,23 +85,27 @@ var bounds = [
 function render_data(dataPoints,mapCenter,is_init){
 	//alert('aa');
 	init_mode = is_init;
-    // console.log('center',mapCenter);
-	if (mapCenter == 0){
-		//alert('ss');
-		mapCenter = current_mapCenter;
-	}
+    // console.log('center',mapCenter);	
 	document.getElementById('combinedMap').innerHTML = "<div id='map' style='width: <?php echo $this->width; ?>; height: <?php echo $this->height; ?>;'></div>";
 	if (is_init==true){
 		zoomLevel = MIN_ZOOM;
 	}
 	else{
 		zoomLevel = MAX_ZOOM;
-		cities.forEach(function(city) {
-			if (selectedCity != city.name)
-				dataPoints.push(city);
-		});
+		if (mapCenter != 0){
+			cities.forEach(function(city) {
+				if (selectedCity != city.name)
+					dataPoints.push(city);
+			});
+		}
 	}
-	map = L.map('map').setView(mapCenter,zoomLevel);
+	
+	if (mapCenter == 0){
+		//alert('ss');
+		mapCenter = current_mapCenter;
+	}
+	
+	map = L.map('map').setView(mapCenter,zoomLevel,{animation: true});
 	mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 	L.tileLayer(
 		'https://api.mapbox.com/styles/v1/sarita9999/ciwafa38h000o2pmrfnjw40hh/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2FyaXRhOTk5OSIsImEiOiJjaXVuZjYxcDIwMGpsMnV0NDA5b2pxdGZyIn0.3u24PnGOnV_J1v04ZOLqxw',{
@@ -114,7 +116,7 @@ function render_data(dataPoints,mapCenter,is_init){
 		mapId: 'mapbox.mapbox-streets-v7',
 		token:'pk.eyJ1Ijoic2FyaXRhOTk5OSIsImEiOiJjaXVuZjYxcDIwMGpsMnV0NDA5b2pxdGZyIn0.3u24PnGOnV_J1v04ZOLqxw',
 		attribution: '<b>&copy; VizDom</b>',
-		maxZoom: MAX_ZOOM,
+		maxZoom: 18,
 		minZoom : MIN_ZOOM,
         maxBounds: bounds // Sets bounds as max
 		}).addTo(map);
@@ -124,36 +126,10 @@ function render_data(dataPoints,mapCenter,is_init){
 			}
 	});
 	
-	// var locationFilter = new L.LocationFilter().addTo(map);
-	// locationFilter.on("change", function() {
-	// 	var bounds = this.getBounds();
-	// 	// $("#result .sw").val(bounds.getSouthWest().lat + ", " + bounds.getSouthWest().lng);
-	// 	// $("#result .ne").val(bounds.getNorthEast().lat + ", " + bounds.getNorthEast().lng);
-	// });
-
-	// var circle = L.circle([40.104516, -88.228238], 10000).addTo(map);  //0
-	// circle.on({
-	// 	mousedown: function () {
-	// 		map.on('mousemove', function (e) {
-	//
-	// 			circle.setLatLng(e.latlng);
-	// 		});
-	// 	}
-	// });
-	// map.on('mouseup',function(e){
-	// 	map.removeEventListener('mousemove');Final_Data_With_Categories_112616.csv
-	// })
 	var markersLayer = new L.LayerGroup();	//layer contain searched elements
-	map.addLayer(markersLayer).addTo;
+	map.addLayer(markersLayer);//.addTo;
 
-	/*var greenIcon = L.icon({
-		iconUrl: './images/Pets.png',//'images/Picture1.png',
-		iconSize:     [30, 30], // size of the icon
-        shadowSize:   [50, 64], // size of the shadow
-		iconAnchor:   [35, 25], // point of the icon which will correspond to marker's location
-		shadowAnchor: [4, 62],  // the same for the shadow
-		popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-	});*/
+	
 
     var redIcon = L.icon({
         iconUrl: './images/markerr.png',//'images/Picture1.png',
@@ -167,7 +143,7 @@ function render_data(dataPoints,mapCenter,is_init){
 	// preparing variables for markers and popups
 	for (i = 0; i < dataPoints.length; i++) { 
 		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ dataPoints[i].stars;	//value searched
-		var title = dataPoints[i].name;
+		var title = dataPoints[i].name;	//value searched
 		//if (is_init == true)
 		//	var	loc = dataPoints[i].loc;		//position found
 		//else{
@@ -191,38 +167,34 @@ function render_data(dataPoints,mapCenter,is_init){
 					}),
 					title: title});
 			}
-
-            var RADIUS = 1000;
-            var circleList1 = [];
+			
+			/*
             var filterCircle1 = L.circle(L.latLng(55.963326, -3.191736), RADIUS, {   //40, -75) 55.963326,'longitude': -3.191736 //40, -75
                 opacity: 1,
                 weight: 1,
                 fillOpacity: 0.4
 
-            });//.addTo(map);// on("click", circleClick);  .bindPopup("Click reset button to disable");
-            // circleList.push(filterCircle);
-            // console.log('current list',circleList.length);
-            // // if(count == 2){
-            // // count = count -1;}
-            // if (count == 1 ){circleList[0].addTo(map); }
+            });
+			*/
 		}
 
-		marker.bindPopup(title_marker);
+		marker.bindPopup(title);
 		//if (is_init == true)
-			marker.on('click', onMarkerClick);
-		markersLayer.addLayer(marker);
+		marker.on('click', onMarkerClick);
+		markersLayer.addLayer(marker);/*
 		if(i == dataPoints.length -1){
 			if(is_init ==false){
-
-                map.addLayer(filterCircle1, true);
-                filterCircle1.setZIndex(10);
+				var dum;
+                //map.addLayer(filterCircle1, true);
+                //filterCircle1.setZIndex(10);
 			}
-		}
+		}	*/
 
 	};
 
+
 	// This is for the text display
-	//if (is_init == true){
+	if (is_init == true){
 		for (i = 0; i < cities.length; i++) {
 			var textDisplay = cities[i].name,	//value searched
 				location = [cities[i].latitude , cities[i].longitude];//position found
@@ -230,15 +202,28 @@ function render_data(dataPoints,mapCenter,is_init){
 				icon: L.divIcon({
 					className: 'text-labels-new',   // Set class for CSS styling
 					html: textDisplay
-				}),
-				draggable: false,       // Allow label dragging...?
-				zIndexOffset: 1000
+				})//,
+				//draggable: false,       // Allow label dragging...?
+				//zIndexOffset: 10
 			});
 
 			myTextLabel.addTo(map);
 		};
-	//}
-   
+	}
+	
+	///// Circle 
+	//var zoom = map.getZoom();
+	//RADIUS = map.getZoom()*200000;
+	
+	
+	
+	
+	//alert();
+	if(brush_mode){
+		
+		callBrush();
+	}
+	
 
     // for the search bar
 	function customTip(text,val) {
@@ -258,23 +243,7 @@ function render_data(dataPoints,mapCenter,is_init){
 	setTimeout(function () {
       defaultOpenUp(sidebar);
 	}, 2000);
-    // Filter area
-    // var locationFilter = new L.LocationFilter;
-    // locationFilter.addTo(map);
-
-    // if(count == 1){
-    // 	count = count -1;
-    //     callBrush();}
-
-	// callLocationFilter(map);
-    // if(is_init == false){
-     //    setTimeout(function () {
-     //    	console.log("ho");
-     //        filterCircle1.addTo(map);
-     //        console.log("hooooo");
-     //    }, 1000);
-    // }
-
+    
 
 
 	function gethelper(){
@@ -282,33 +251,60 @@ function render_data(dataPoints,mapCenter,is_init){
 	}
 
 	$("#tester").click(function(){
-		// alert("heyya");
-		callBrush();
+		if (!brush_mode){
+			brush_mode = true;
+			callBrush();
+		}/*
+		else{
+			brush_mode = false;
+			callBrush();
+		}*/
+		
 	});
 
 
-	// if(zoomLevel ==  MAX_ZOOM && is_init == false || zoomLevel == 4){
-	// 	count = 0;
-	// 	callBrush();
-	// }
-
+	
+	
+	
     function callBrush(){
         // console.log(dPoints[1]);
-        count = count + 1;
-        console.log('current count',count);
-        var RADIUS = 800000;
-        var circleList = [];
+        //count = count + 1;
+        //console.log('current count',count);
+        //var RADIUS = 800000;
+        //var circleList = [];
+		/*
         var filterCircle = L.circle(L.latLng(55.963326, -3.191736), RADIUS, {   //40, -75) 55.963326,'longitude': -3.191736 //40, -75
             opacity: 1,
             weight: 1,
             fillOpacity: 0.4
 
-        });//.addTo(map); on("click", circleClick);  .bindPopup("Click reset button to disable");
-        circleList.push(filterCircle);
-        console.log('current list',circleList.length);
+        });*///.addTo(map); on("click", circleClick);  .bindPopup("Click reset button to disable");
+        //circleList.push(filterCircle);
+        //console.log('current list',circleList.length);
         // if(count == 2){
         // count = count -1;}
-        if (count == 1 ){circleList[0].addTo(map); }
+		var filterCircle = L.circle(L.latLng(current_mapCenter[0],current_mapCenter[1]), RADIUS, {
+            opacity: 1,
+            weight: 1,
+            fillOpacity: 0.4
+
+        });
+		if (map.getZoom() == MAX_ZOOM){
+			RADIUS = 200; filterCircle.setRadius(RADIUS);
+		}if (map.getZoom() == MIN_ZOOM) {RADIUS = 800000; filterCircle.setRadius(RADIUS);}
+		console.log(RADIUS, map.getZoom());
+	
+        if (brush_mode==true ){
+			console.log (filterCircle.getRadius()+"\t"+map.getZoom()+"\t FROM CALL BRUSH");
+			console.log (brush_mode);
+			filterCircle.addTo(map); 
+			//brush_mode = false;
+		}
+		else {
+			console.log (filterCircle.getRadius());
+			console.log (brush_mode); 
+			map.removeLayer(filterCircle); 
+		}
 
         // function circleClick(){
         //     map.removeLayer(filterCircle);
@@ -350,7 +346,7 @@ function render_data(dataPoints,mapCenter,is_init){
         map.on('click', function(e){
         	var obj =  [e.latlng.lat,e.latlng.lng];            //{'lat':e.latlng.lat, 'lng':e.latlng.lng};
         	if(count > 0){
-                console.log(arePointsNear1(obj, filterCircle.getLatLng(), filterCircle.getRadius()/1000));
+                //console.log(arePointsNear1(obj, filterCircle.getLatLng(), filterCircle.getRadius()/1000));
 				for(var k =0; k < cities.length; k++){
 
 					if(cities[k].latitude == obj[0] && cities[k].longitude == obj[1]){
@@ -370,7 +366,7 @@ function render_data(dataPoints,mapCenter,is_init){
             // console.log(filterCircle.setLatLng(e.latlng));
             // console.log(filterCircle.getRadius(),'radius');
             // console.log(filterCircle.getLatLng(), 'center');
-            console.log(circleList[0].getLatLng(), "layer circle 0");
+            console.log(filterCircle.getLatLng(), "layer circle 0");
             arePointsNear(filterCircle.getLatLng(),filterCircle.getRadius());
             // getListOfLatLng(filterCircle.getLatLng(),filterCircle.getRadius());
             // setFilter(function showAirport(cs) {
@@ -425,7 +421,7 @@ function render_data(dataPoints,mapCenter,is_init){
                 dataAll.push(getBrushData(a[i].name,"All","All",1));
             }
 		}
-		console.log(dataAll);
+		console.log("Data Found\t"+dataAll.length);
 
 
         // getListOfLatLng(center,radius_meter,a);
@@ -486,7 +482,7 @@ function render_data(dataPoints,mapCenter,is_init){
     function getListOfLatLng(from_center, km, a){
         if(a.length != 0) {
             var file = "City-wise-aggregate/".concat(a[0].toString().toLowerCase().concat("_data.csv"));
-            console.log(file);
+            //console.log(file);
             var listoflatlng = [];
             var ky = 40000 / 360;
             var kx = Math.cos(Math.PI * from_center.lat / 180.0) * ky;
@@ -506,9 +502,9 @@ function render_data(dataPoints,mapCenter,is_init){
 //
     function arePointsNear1(checkPoint, centerPoint, km) {
 
-        console.log('enter main logic');
-        console.log('print checkpoint', checkPoint[0]);
-        console.log('print checkpoint1', checkPoint[1]);
+        //console.log('enter main logic');
+        //console.log('print checkpoint', checkPoint[0]);
+        //console.log('print checkpoint1', checkPoint[1]);
         var ky = 40000 / 360;
         var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
         var dx = Math.abs(centerPoint.lng - checkPoint[1]) * kx;

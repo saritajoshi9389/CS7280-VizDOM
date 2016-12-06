@@ -223,7 +223,7 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
     //go through the array, and sum up the total # of stars and the rating values
     //also, format an object for the histogram draw function
     for (var i = 0; i<avgStarsGrouped.length; i++){
-         sumStars += avgStarsGrouped[i].key*avgStarsGrouped[i].value;
+        sumStars += avgStarsGrouped[i].key*avgStarsGrouped[i].value;
         totalStars += avgStarsGrouped[i].value;
         starHist.push({bin:avgStarsGrouped[i].key, count:avgStarsGrouped[i].value});
     }

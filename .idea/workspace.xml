@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="717d56b6-799f-48e2-ba96-d5c45ed1c9e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Citywise_Daily_checkin.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/header_final_join_data_103016.csv" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/compare_render.js" afterPath="$PROJECT_DIR$/js/compare_render.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/dataLoader_new.js" afterPath="$PROJECT_DIR$/js/dataLoader_new.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/leaflet_data_render.js" afterPath="$PROJECT_DIR$/js/leaflet_data_render.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/sidebar1.js" afterPath="$PROJECT_DIR$/js/sidebar1.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="dataLoader_new.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/dataLoader_new.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11217">
-              <caret line="665" column="0" lean-forward="false" selection-start-line="665" selection-start-column="0" selection-end-line="665" selection-end-column="0" />
+            <state relative-caret-position="259">
+              <caret line="180" column="54" lean-forward="true" selection-start-line="180" selection-start-column="54" selection-end-line="180" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -54,6 +52,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="compare_render.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/compare_render.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="187" column="36" lean-forward="false" selection-start-line="187" selection-start-column="36" selection-end-line="187" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="custom-style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/custom-style.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/js/sidebar1.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="498">
-              <caret line="342" column="36" lean-forward="true" selection-start-line="342" selection-start-column="36" selection-end-line="342" selection-end-column="36" />
+              <caret line="342" column="36" lean-forward="false" selection-start-line="342" selection-start-column="36" selection-end-line="342" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -87,6 +95,7 @@
       <find>'bar'</find>
       <find>'bar</find>
       <find>selectedCity</find>
+      <find>Business_star_data</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -97,10 +106,10 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/custom-style.css" />
-        <option value="$PROJECT_DIR$/js/compare_render.js" />
-        <option value="$PROJECT_DIR$/js/dataLoader_new.js" />
         <option value="$PROJECT_DIR$/js/sidebar1.js" />
         <option value="$PROJECT_DIR$/js/leaflet_data_render.js" />
+        <option value="$PROJECT_DIR$/js/compare_render.js" />
+        <option value="$PROJECT_DIR$/js/dataLoader_new.js" />
       </list>
     </option>
   </component>
@@ -289,12 +298,12 @@
       <updated>1480980236694</updated>
       <workItem from="1480980237915" duration="984000" />
       <workItem from="1480983181824" duration="1890000" />
-      <workItem from="1480987042576" duration="5524000" />
+      <workItem from="1480987042576" duration="6567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8398000" />
+    <option name="totallyTimeSpent" value="9441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -342,18 +351,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="81" lean-forward="false" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="81" />
-          <folding>
-            <marker date="1480992595101" expanded="true" signature="3422:3495" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="4445:4451" ph="©" />
-            <marker date="1480992595101" expanded="true" signature="6523:6535" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6602:6613" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6629:6635" ph=" " />
-            <marker date="1480992595101" expanded="true" signature="6635:6641" ph=" " />
-            <marker date="1480992595101" expanded="true" signature="6693:6705" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6762:6774" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6824:6836" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="9465:9520" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -413,6 +411,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-619">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -455,15 +454,7 @@
     <entry file="file://$PROJECT_DIR$/js/sidebar1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
-          <caret line="342" column="36" lean-forward="true" selection-start-line="342" selection-start-column="36" selection-end-line="342" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/compare_render.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3713">
-          <caret line="188" column="39" lean-forward="false" selection-start-line="188" selection-start-column="39" selection-end-line="188" selection-end-column="39" />
+          <caret line="342" column="36" lean-forward="false" selection-start-line="342" selection-start-column="36" selection-end-line="342" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -472,25 +463,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-          <folding>
-            <marker date="1480992595101" expanded="true" signature="3422:3495" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="4445:4451" ph="©" />
-            <marker date="1480992595101" expanded="true" signature="6523:6535" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6602:6613" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6629:6635" ph=" " />
-            <marker date="1480992595101" expanded="true" signature="6635:6641" ph=" " />
-            <marker date="1480992595101" expanded="true" signature="6693:6705" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6762:6774" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="6824:6836" ph="..." />
-            <marker date="1480992595101" expanded="true" signature="9465:9520" ph="..." />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/compare_render.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="187" column="36" lean-forward="false" selection-start-line="187" selection-start-column="36" selection-end-line="187" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/dataLoader_new.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11217">
-          <caret line="665" column="0" lean-forward="false" selection-start-line="665" selection-start-column="0" selection-end-line="665" selection-end-column="0" />
+        <state relative-caret-position="259">
+          <caret line="180" column="54" lean-forward="true" selection-start-line="180" selection-start-column="54" selection-end-line="180" selection-end-column="54" />
           <folding />
         </state>
       </provider>

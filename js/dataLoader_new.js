@@ -167,8 +167,6 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
 	
     var starSubset = starFilter.top(Infinity);
 
-    console.log(starSubset);
-
 	if (selectedStar != "All" && !init_mode){
 		render_data(starSubset,0,false);
 	}
@@ -257,8 +255,6 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
         //remove all but the selected category from the array
         var catFilter = checkinData.filter(function(d){ return d.category == selectedCategory});
 
-        console.log(catFilter);
-
         if (catFilter[0].star){
             var starFilter = checkinData.filter(function(d){return d.star == selectedStar});
 
@@ -266,9 +262,7 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
 
         }
 
-        console.log(catFilter);
-
-        catFilter.forEach(function(d,i) {
+             catFilter.forEach(function(d,i) {
 
             d.total = 0;
 

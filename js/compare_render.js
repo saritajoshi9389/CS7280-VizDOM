@@ -186,7 +186,6 @@ function drawSideBySide(graphNum, histData,comparison_city_num) {
                     return d.bin;
                 }
                 if (graphNum == 4 ){
-                    console.log(d.day);
                     return d.day;
                 }
 
@@ -257,7 +256,6 @@ function drawSideBySide(graphNum, histData,comparison_city_num) {
                 .append('rect')
                 .attr('class','bar')
                 .attr('id',function(d){
-                    console.log(d);
                     if (graphNum == 1 || graphNum ==2){
                         return "bar"+d.bin
                     }

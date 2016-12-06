@@ -418,14 +418,15 @@ function render_data(dataPoints,mapCenter,is_init){
 
         }
 
-        console.log(a, "sss");
-		for (i =0 ; i< a.length;i++){
-            if(a.length != 0)
-            {
-                dataAll.push(getBrushData(a[i].name,"All","All",1));
-            }
-		}
-		console.log(dataAll);
+         console.log(a, "sss");
+        brushedDataPoints(a);
+		// for (i =0 ; i< a.length;i++){
+         //    if(a.length != 0)
+         //    {
+         //        dataAll.push(getBrushData(a[i].name,"All","All",1));
+         //    }
+		// }
+		// console.log(dataAll);
 
 
         // getListOfLatLng(center,radius_meter,a);

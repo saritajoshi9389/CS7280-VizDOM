@@ -303,7 +303,7 @@
                     <li class="page-scroll">
                         <!--<a href="#portfolio">Comparison</a>-->
 						<div class="dropdown">
-                        <button onclick="openComparator()" class="dropbtn btn btn-default" type="button">COMPARE CITIES</button>
+                        <button onclick="openComparator()" class="dropbtn btn btn-default dropdown-toggle" type="button">COMPARE CITIES</button>
                         </div>
                         <div id="city_compare" class="dropdown-content">
                             <!--<a href="#">Link 1</a>-->
@@ -377,7 +377,7 @@
                                             <label> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</label>
                                     </th>
                                     <th>
-										<button type="button" class="btn btn-primary page-scroll" onclick="compare_cities()">Compare</button>
+										<button type="button" class="btn btn-primary page-scroll" onclick="compare_cities()" id="comparenow">Compare</button>
                                     </th>
                                 </tr>
                             </table>
@@ -590,6 +590,14 @@
                                 };
 
                                 setTimeout(show, 3000);
+
+//                                var limit = 2;
+//                                $('input.compare_checkbox').on('change', function(evt) {
+//                                    alert("h");
+//                                    if($(this).siblings(':checked').length >= 2) {
+//                                        this.checked = false;
+//                                    }
+//                                });
 
                             init_render()
                         </script>

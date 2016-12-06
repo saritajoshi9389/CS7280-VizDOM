@@ -13,6 +13,10 @@ var city_centres = [
 			
 function compare_cities (){
 
+        // alert("ya");
+        openComparator();
+
+
     toggle_visibility('portfolio');
 
     function toggle_visibility(id) {

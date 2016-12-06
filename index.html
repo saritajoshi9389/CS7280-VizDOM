@@ -303,7 +303,7 @@
                     <li class="page-scroll">
                         <!--<a href="#portfolio">Comparison</a>-->
 						<div class="dropdown">
-                        <button onclick="openComparator()" class="dropbtn btn btn-default" type="button">COMPARE CITIES</button>
+                        <button onclick="openComparator()" class="dropbtn btn btn-default dropdown-toggle" type="button">COMPARE CITIES</button>
                         </div>
                         <div id="city_compare" class="dropdown-content">
                             <!--<a href="#">Link 1</a>-->
@@ -377,7 +377,7 @@
                                             <label> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;</label>
                                     </th>
                                     <th>
-										<button type="button" class="btn btn-primary page-scroll" onclick="compare_cities()">Compare</button>
+										<button type="button" class="btn btn-primary page-scroll" onclick="compare_cities()" id="comparenow">Compare</button>
                                     </th>
                                 </tr>
                             </table>
@@ -510,6 +510,14 @@
                     <!-- Rending the first map -->
                     <div id="combinedMap" class="col-sm-12 sidebar-map">
                         <script>
+
+
+                            $('input[type=checkbox]').change(function(e){
+                                if ($('input[type=checkbox]:checked').length > 2) {
+                                    $(this).prop('checked', false)
+                                    alert("allowed only 2 cities allowed! You can brush the map if you want more cities");
+                                }
+                            })
                                 isIE=document.all;
                             isNN=!document.all&&document.getElementById;
                             isN4=document.layers;
@@ -590,6 +598,14 @@
                                 };
 
                                 setTimeout(show, 3000);
+
+//                                var limit = 2;
+//                                $('input.compare_checkbox').on('change', function(evt) {
+//                                    alert("h");
+//                                    if($(this).siblings(':checked').length >= 2) {
+//                                        this.checked = false;
+//                                    }
+//                                });
 
                             init_render()
                         </script>

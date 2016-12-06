@@ -418,6 +418,7 @@ function render_data(dataPoints,mapCenter,is_init){
         }
 
         console.log(a, "sss");
+        brushedDataPoints(a);
 		for (i =0 ; i< a.length;i++){
             if(a.length != 0)
             {

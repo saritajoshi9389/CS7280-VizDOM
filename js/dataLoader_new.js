@@ -10,6 +10,7 @@ var starInput = true;
 
 var dummyArray = ["Madison","Montreal"];
 var areaSelection = false;
+var uniqueArray = [];
 
 //reset the window to the first panel when the page first loads (otherwise, the browser cache stores the last anchor point)
 window.location.href='#';
@@ -74,6 +75,9 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
             d3.selectAll('#city-name').html('All Cities');
             d3.selectAll('#avg-review').html('All Cities');
         }
+        if(uniqueArray.length != 0){
+            d3.selectAll('#city-name').html('Cities ' + ', '+ uniqueArray.toString());
+        }
         else {
             d3.selectAll('#city-name').html('All Cities' + ', '+ selectedCategory);
             d3.selectAll('#avg-review').html('All Cities');
@@ -83,6 +87,17 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
 
         if (dummyArray.length != 0){
             cityData = byCity.filter().top(Infinity);
+        }
+        if (uniqueArray.length != 0){
+            var accumulator = [];
+            for (i=0; i< uniqueArray.length;i ++){
+                // console.log("chu",byCity.filterExact(uniqueArray[i]).top(Infinity));
+                accumulator.push(byCity.filterExact(uniqueArray[i]).top(Infinity));
+            }
+            var merged = [].concat.apply([], accumulator);
+            cityData = merged;
+            console.log("jugad", cityData);
+
         }
         else {
             cityData = byCity.filter().top(Infinity);
@@ -1052,4 +1067,27 @@ function openNav() {
 /* Close when someone clicks on the "x" symbol inside the overlay */
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
+}
+
+function brushedDataPoints(a){
+    var brushedPoints =[];
+
+    if(a.length != 0){
+        for(i =0; i< a.length;i++){
+            brushedPoints.push(a[i].name);
+        }
+        // console.log("hi", brushedPoints);
+        uniqueArray = brushedPoints.filter(function(item, pos) {
+            return brushedPoints.indexOf(item) == pos;
+        })
+    }
+    else{
+        brushedPoints = [];
+        uniqueArray = [];
+    }
+
+    console.log("hiii", uniqueArray);
+    selectedCity = "All";
+
+    updateData();
 }

@@ -569,7 +569,6 @@ function getCompareSideBySideData(city, cat_sidebyside, bus_sidebyside, comapari
 
     }
     else if (selectedBusiness == "All"){
-
         //remove all but the selected category from the array
         var catFilter = checkinData.filter(function(d){ return d.category == selectedCategory});
 

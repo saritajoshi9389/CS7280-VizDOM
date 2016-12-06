@@ -60,7 +60,7 @@ function onMarkerClick(e) {
 				
 				current_mapCenter = city_center;
                 render_data(dataPoints,city_center,false);
-				
+
 			}
 
         }
@@ -123,7 +123,7 @@ function render_data(dataPoints,mapCenter,is_init){
 				callReset();
 			}
 	});
-	
+
 	// var locationFilter = new L.LocationFilter().addTo(map);
 	// locationFilter.on("change", function() {
 	// 	var bounds = this.getBounds();

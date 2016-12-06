@@ -6,19 +6,9 @@ function drawSidebar(graphNum, histData) {
 
 //sidebar doesn't load until after the script has executed. Add a delay to ensure that the div will exist before we select it
     $(document).ready(function () {
-        //var sidebar1SVG = document.getElementById('sidebar1');
-        //var width = sidebar1SVG.width();
 
-        //console.log(histData);
         var div = d3.selectAll('.tooltip')
             .style("opacity", 0);
-
-        //from https://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
-       /* var tool_tip = d3.tip()
-            .attr("class", "d3-tip")
-            .offset([-8, 0])
-            .html(function(d) { return 'testing' });*/
-
 
         //add an SVG element to the div
         var sidebarSVG = d3.selectAll('#sidebar' + graphNum)
@@ -33,9 +23,6 @@ function drawSidebar(graphNum, histData) {
                     return '95%'
                 }
             });
-
-       // d3.selectAll('svg').call(tool_tip);
-
 
         if (!d3.selectAll('#sidebarStar').node()){
             var starSVG = d3.selectAll('#stardiv')
@@ -52,36 +39,15 @@ function drawSidebar(graphNum, histData) {
                 .remove();
         }
 
-        //can't get width, since parent element starts out collapsed
-        //var widthSB1 = d3.select("#sidebar1SVG").node().getBoundingClientRect().width;
-        //var heightSB1 = d3.select("#sidebar1").attr('viewbox');//.node().getBoundingClientRect().height;
-
-
         marginSB1 = {top:17, right:30,bottom:5,left:25};
         widthSB1 = 200 -(marginSB1.right+marginSB1.left);
         heightSB1 = 100 - (marginSB1.top + marginSB1.bottom);
-
-        //console.log(widthSB1,heightSB1);
 
         //set up scale factors (will update the domain when the data is loaded)
         x = d3.scaleBand().rangeRound([marginSB1.left, ((widthSB1+10))]).padding(0.1);
         y = d3.scaleLinear().rangeRound([0, heightSB1]);
 
-        /*
-        if (graphNum == 1){
-            colorscale = d3.scaleLinear().range(["#9e9ac8","#54278f"]); //"#807dba","#6a51a3",
-        }
-        else if (graphNum ==2){*/
-            colorscale = d3.scaleLinear().range(["#9ecae1","#08519c"]); //"#4292c6","#2171b5",
-        /*}
-        else if (graphNum ==3 || graphNum ==4){
-            colorscale = d3.scaleLinear().range(["#74c476","#006d2c"]); //"#41ab5d","#238b45",
-        }
-        else {
-            colorscale = d3.scaleLinear().range(["#fd8d3c","#a63603"]); //"#f16913","#d94801",
-        }*/
-
-
+        colorscale = d3.scaleLinear().range(["#9ecae1","#08519c"]); //"#4292c6","#2171b5",
 
         xHoriz = d3.scaleLinear().rangeRound([marginSB1.left, widthSB1]);
         yHoriz = d3.scaleBand().rangeRound([0, (heightSB1+20)]).padding(0.1);
@@ -326,14 +292,7 @@ function drawSidebar(graphNum, histData) {
                 .attr('fill', function(d){ return colorscale(d.count)})
                 .on('mouseover', function(d){
 
-                    //console.log(d3.event.pageX);
-
                     var clientRect = d3.selectAll('.bar-group-1').node().getBoundingClientRect();
-
-                    //console.log(clientRect);
-                    //console.log(d3.mouse(document.body));
-
-                    //console.log(d3.event.pageY - $('#sidebar'+ graphNum + 'SVG').offset().top + $('.sidebar-content').scrollTop());
 
                     div = d3.selectAll('.tooltip');
                     div//.transition()
@@ -345,17 +304,12 @@ function drawSidebar(graphNum, histData) {
                         .style("left", (d3.event.pageX - $('.sidebar-content').offset().left  + $('.sidebar-content').scrollLeft() + "px")) //+d3.select(this).attr('x')
                         .style("top", (d3.event.pageY  - $('.sidebar-content').offset().top   + $('.sidebar-content').scrollTop() + -10 +"px"));//+d3.select(this).attr('y')
 
-                    //tool_tip.show();
-
                 })
                 .on('mouseleave', function(d){//console.log(d);
 
                     div//.transition()
                         //.duration(100)
                         .style("opacity", 0);
-
-                    //tool_tip.hide();
-
                 });
         }
         if(graphNum == 3){
@@ -371,21 +325,13 @@ function drawSidebar(graphNum, histData) {
                 .attr('height', yHoriz.bandwidth())
                 .attr('fill', function(d){return colorscale(d.count)})
                 .on('mouseover', function(d){
-
-                    // console.log(d3.event.pageX);
-
                     var clientRect = d3.selectAll('.bar-group-3').node().getBoundingClientRect();
-
-                    //console.log(clientRect);
-                    //console.log(d3.mouse(document.body));
 
                     div = d3.selectAll('.tooltip');
                     div//.transition()
-                    //.duration(200)
-                        .style("opacity", .9);
+                         .style("opacity", .9);
                     div.html(d.count)
-                        //.style("left", (d3.mouse(document.body)[0]-clientRect.left+7 + "px")) //+d3.select(this).attr('x')
-                        //.style("top", (d3.mouse(document.body)[1]-clientRect.top+75  + "px"));//+d3.select(this).attr('y')
+
                         .style("left", (d3.event.pageX - $('.sidebar-content').offset().left  + $('.sidebar-content').scrollLeft() + "px")) //+d3.select(this).attr('x') //#sidebar'+ graphNum + 'SVG
                         .style("top", (d3.event.pageY  - $('.sidebar-content').offset().top   + $('.sidebar-content').scrollTop() + -10 +"px"));//+d3.select(this).attr('y')
 

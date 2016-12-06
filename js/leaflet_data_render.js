@@ -142,13 +142,11 @@ function render_data(dataPoints,mapCenter,is_init){
 	// L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 	// preparing variables for markers and popups
 	for (i = 0; i < dataPoints.length; i++) { 
-<<<<<<< HEAD
-		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ dataPoints[i].stars;	//value searched
-		var title = dataPoints[i].name;	//value searched
-=======
+
+		// var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ dataPoints[i].stars;	//value searched
+		// var title = dataPoints[i].name;	//value searched
 		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ Math.ceil(dataPoints[i].stars);	//value searched
 		var title = dataPoints[i].name;
->>>>>>> origin/master
 		//if (is_init == true)
 		//	var	loc = dataPoints[i].loc;		//position found
 		//else{

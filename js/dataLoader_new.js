@@ -57,6 +57,7 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
     if (selectedBusiness != "All"){
         selectedStar = "All";
     }
+	console.log('Selected Category  '+selectedCategory);
 
     //set up initial crossfilter
     //note: need to update the global version, so that update function has access to it later
@@ -138,6 +139,7 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
         //console.log('filtering');
         byCategory.filter(); //clear filter
         categoryData = byCategory.filterExact(selectedCategory).top(Infinity); //filter by category
+		render_data(categoryData,0,false);
     }
 
     //filter by business, if appropriate
@@ -185,6 +187,11 @@ function updateData(){//selectedCity, selectedCategory, selectedBusiness) {
 
 	if (selectedStar != "All" && !init_mode){
 		render_data(starSubset,0,false);
+	}
+	
+	if (selectedCategory != "All" && !init_mode){
+		//render_data(categoryData,0,false);
+		console.log(categoryData);
 	}
 
     var starSubsetCf = crossfilter(starSubset);

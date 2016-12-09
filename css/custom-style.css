@@ -591,3 +591,29 @@ padding-top: 2%;}
     background-image: none;
     background-color: cornflowerblue !important;
 }
+
+.glyphicon .glyphicon-fullscreen{
+    float: right;
+    /*margin-top: 2px;*/
+    /*margin-right: -6px;*/
+    margin-bottom: 10px;
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    float: right; !important;
+}
+
+#rev{
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+}

@@ -142,7 +142,7 @@ function render_data(dataPoints,mapCenter,is_init){
 	// L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
 	// preparing variables for markers and popups
 	for (i = 0; i < dataPoints.length; i++) { 
-		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ Math.ceil(dataPoints[i].stars);	//value searched
+		var title_marker = "<i style='color: grey;'>Name: </i>"+ dataPoints[i].name + "</br>" + "</br>" + "<i style='color:grey;'>Address: </i> &nbsp;&nbsp;"+ dataPoints[i].full_address+ "</br>" + "<i style='color: grey;'>City: </i> "+dataPoints[i].city + "</br>" + "<i style='color: grey;'>State: </i> "+ dataPoints[i].state+  "<i style='color: grey;'>Category: </i> "+ dataPoints[i].Category + "</br>" + "<img src='./images/star_tool.png' width='10%' height='10%'>  "+ Math.ceil(dataPoints[i].stars) + "&nbsp;&nbsp;&nbsp;&nbsp;" + "<a href ='https://www.yelp.com/boston' target='_blank'><span class='glyphicon glyphicon-fullscreen' id='rev'>" + "</span></a>";	//value searched
 		var title = dataPoints[i].name;
 		//if (is_init == true)
 		//	var	loc = dataPoints[i].loc;		//position found
@@ -241,7 +241,7 @@ function render_data(dataPoints,mapCenter,is_init){
 	var sidebar = L.control.sidebar('sidebar', {position: 'right',autoPan:true}).addTo(map);
 	setTimeout(function () {
       defaultOpenUp(sidebar);
-	}, 2000);
+	}, 3000);
     
 
 
